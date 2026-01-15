@@ -265,63 +265,157 @@
             margin-bottom: 2rem;
         }
 
-        .about-stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 2rem;
-            background: rgba(0, 217, 255, 0.05);
-            border-radius: 12px;
-            border: 1px solid rgba(0, 217, 255, 0.1);
-            transition: all 0.3s;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-            box-shadow: 0 5px 20px var(--accent-glow);
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--primary);
-            font-family: 'Space Mono', monospace;
-        }
-
-        .stat-label {
-            font-size: 0.95rem;
-            color: var(--text-dim);
-            margin-top: 0.5rem;
-        }
-
-        .skills-grid {
+        /* Circular Skills Layout */
+        .skills-container {
+            position: relative;
+            width: 100%;
+            height: 600px;
             display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 2rem;
+            align-items: center;
+            justify-content: center;
         }
 
-        .skill-tag {
-            padding: 0.6rem 1.2rem;
+        .skills-center {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-align: center;
+            color: var(--dark);
+            box-shadow: 0 0 40px var(--accent-glow);
+            z-index: 10;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 40px var(--accent-glow);
+                transform: scale(1);
+            }
+            50% {
+                box-shadow: 0 0 60px var(--accent-glow);
+                transform: scale(1.05);
+            }
+        }
+
+        .skill-circle {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
             background: rgba(255, 107, 53, 0.1);
-            border: 1px solid var(--secondary);
-            border-radius: 20px;
+            border: 2px solid var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 600;
             color: var(--secondary);
-            font-size: 0.9rem;
-            font-weight: 500;
+            padding: 1rem;
             transition: all 0.3s;
+            cursor: pointer;
+            animation: float 6s ease-in-out infinite;
         }
 
-        .skill-tag:hover {
+        .skill-circle:hover {
             background: var(--secondary);
             color: var(--dark);
-            transform: translateY(-2px);
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+            z-index: 20;
+        }
+
+        /* Position each skill in a circle */
+        .skill-circle:nth-child(2) {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            animation-delay: 0s;
+        }
+
+        .skill-circle:nth-child(3) {
+            top: 50px;
+            right: 50px;
+            animation-delay: 0.5s;
+        }
+
+        .skill-circle:nth-child(4) {
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            animation-delay: 1s;
+        }
+
+        .skill-circle:nth-child(5) {
+            bottom: 50px;
+            right: 50px;
+            animation-delay: 1.5s;
+        }
+
+        .skill-circle:nth-child(6) {
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            animation-delay: 2s;
+        }
+
+        .skill-circle:nth-child(7) {
+            bottom: 50px;
+            left: 50px;
+            animation-delay: 2.5s;
+        }
+
+        .skill-circle:nth-child(8) {
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            animation-delay: 3s;
+        }
+
+        .skill-circle:nth-child(9) {
+            top: 50px;
+            left: 50px;
+            animation-delay: 3.5s;
+        }
+
+        .skill-circle:nth-child(10) {
+            top: 20%;
+            right: 20%;
+            animation-delay: 4s;
+        }
+
+        .skill-circle:nth-child(11) {
+            bottom: 20%;
+            right: 20%;
+            animation-delay: 4.5s;
+        }
+
+        .skill-circle:nth-child(12) {
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 5s;
+        }
+
+        .skill-circle:nth-child(13) {
+            top: 20%;
+            left: 20%;
+            animation-delay: 5.5s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+            }
+            50% {
+                transform: translateY(-10px) translateX(5px);
+            }
         }
 
         /* Projects Section */
@@ -517,6 +611,16 @@
                 gap: 3rem;
             }
 
+            .skills-container {
+                height: 800px;
+            }
+
+            .skill-circle {
+                width: 100px;
+                height: 100px;
+                font-size: 0.75rem;
+            }
+
             .projects-grid {
                 grid-template-columns: 1fr;
             }
@@ -541,8 +645,21 @@
                 text-align: center;
             }
 
-            .about-stats {
-                grid-template-columns: 1fr;
+            .skills-container {
+                height: 900px;
+            }
+
+            .skills-center {
+                width: 150px;
+                height: 150px;
+                font-size: 1rem;
+            }
+
+            .skill-circle {
+                width: 90px;
+                height: 90px;
+                font-size: 0.7rem;
+                padding: 0.5rem;
             }
         }
 
@@ -608,36 +725,23 @@
                         cameras, while developing solutions for agriculture robotics and multi-robot coordination 
                         systems.
                     </p>
-                    <div class="skills-grid">
-                        <span class="skill-tag">C++</span>
-                        <span class="skill-tag">Computer Vision</span>
-                        <span class="skill-tag">ROS</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">SLAM</span>
-                        <span class="skill-tag">TinyML</span>
-                        <span class="skill-tag">Motion Planning</span>
-                        <span class="skill-tag">MDPs</span>
-                        <span class="skill-tag">PLCs</span>
-                        <span class="skill-tag">3D Reconstruction</span>
-                    </div>
                 </div>
-                <div class="about-stats">
-                    <div class="stat-item fade-in">
-                        <div class="stat-number">6+</div>
-                        <div class="stat-label">Major Projects</div>
+                <div class="skills-container">
+                    <div class="skills-center">
+                        Autonomous<br>Systems
                     </div>
-                    <div class="stat-item fade-in">
-                        <div class="stat-number">10+</div>
-                        <div class="stat-label">Technologies</div>
-                    </div>
-                    <div class="stat-item fade-in">
-                        <div class="stat-number">∞</div>
-                        <div class="stat-label">Learning</div>
-                    </div>
-                    <div class="stat-item fade-in">
-                        <div class="stat-number">100%</div>
-                        <div class="stat-label">Passionate</div>
-                    </div>
+                    <div class="skill-circle">Computer Vision</div>
+                    <div class="skill-circle">SLAM</div>
+                    <div class="skill-circle">VIO</div>
+                    <div class="skill-circle">C++</div>
+                    <div class="skill-circle">Deep Learning</div>
+                    <div class="skill-circle">Controls</div>
+                    <div class="skill-circle">State Estimation</div>
+                    <div class="skill-circle">ROS</div>
+                    <div class="skill-circle">Differential Geometry</div>
+                    <div class="skill-circle">Linear Algebra</div>
+                    <div class="skill-circle">Data Structures & Algorithms</div>
+                    <div class="skill-circle">Sensor Calibration<br><span style="font-size: 0.7rem; opacity: 0.8;">Camera / IMU / LiDAR</span></div>
                 </div>
             </div>
         </div>
